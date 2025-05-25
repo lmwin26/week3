@@ -1,0 +1,26 @@
+name: Run Java Tests with JUnit
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Compile and run tests
+      run: |
+        mkdir bin
+        javac -cp ".;lib/junit-platform-console-standalone-1.9.3.jar" -d bin src/main/java/*.java src/test/java/*.java
+        java -jar lib/junit-platform-console-standalone-1.9.3.jar -cp bin --scan-class-path
