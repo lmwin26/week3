@@ -22,5 +22,5 @@ jobs:
     - name: Compile and run tests
       run: |
         mkdir -p bin
-        javac -cp ".;lib/junit-platform-console-standalone-1.9.3.jar" -d bin src/main/java/*.java src/test/java/*.java
+        javac -cp "lib/junit-platform-console-standalone-1.9.3.jar" -d bin src/main/java/*.java src/test/java/*.java
         java -jar lib/junit-platform-console-standalone-1.9.3.jar -cp bin --scan-class-path
